@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form href="/order/add" method="post" th:object="${order}">
+        <table>
+            <tbody>
+                <tr>
+                    <th>Order Date</th>
+                    <td>
+                        <input type="date" name="orderDate" value="25-04-2024">
+                    </td>
+                </tr>
+                <tr>
+                    <th>Name</th>
+                    <td>
+                        <input type="text" name="customerName">
+                    </td>
+                </tr>
+                <tr>
+                    <th>Address</th>
+                    <td>
+                        <input type="text" name="shipAddress" value="test">
+                    </td>
+                </tr>
+                <tr>
+                    <th>Notes</th>
+                    <td>
+                        <textarea name="notes">test</textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Tax</th>
+                    <td>
+                        <input type="text" name="tax" value="0.09">
+                    </td>
+                </tr>
+                <tr>
+                    <th><button type="submit">Submit</button></th>
+                    <td align="right">
+                        <button type="button" onclick="addItem()">Add Item</button>
+                    </td>
+                </tr>
+                <table id="items">
+                    <thead>
+                        <th>Product Name</th>
+                        <th>Unit Price</th>
+                        <th>Discount</th>
+                        <th>Quantity</th>
+                    </thead>
+                </table>
+            </tbody>
+        </table>
+    </form>
+
+    <script>
+        let itemCount = 0;
+        function addItem() {
+            const frag = document.createDocumentFragment();
+            const row = document.createElement('tr');
+            row.setAttribute('name', 'items');
+            
+            const productTd = document.createElement('td');
+            const product = document.createElement('input');
+            Object.assign(product, {
+                    type: 'text',
+                    placeholder: 'Product Name',
+                    value: 'apple'
+                }
+            )
+            product.setAttribute('name', `items[${itemCount}].product`);
+            productTd.append(product);
+
+            const unitPriceTd = document.createElement('td');
+            const unitPrice = document.createElement('input');
+            Object.assign(unitPrice, {
+                type: 'text',
+                name: 'items[${itemCount}].unitPrice',
+                placeholder: 'Unit Price',
+                value: '2.0'
+            });
+            unitPrice.setAttribute('name', `items[${itemCount}].unitPrice`);
+            unitPriceTd.append(unitPrice);
+
+            const discountTd = document.createElement('td');
+            const discount = document.createElement('input');
+            Object.assign(discount, {
+                type: 'number',
+                step: "0.01",
+                placeholder: 'Discount',
+                value: "1"
+            });
+            discount.setAttribute('name', `items[${itemCount}].discount`);
+            discountTd.append(discount);
+
+            const quantityTd = document.createElement('td');
+            const quantity = document.createElement('input');
+            Object.assign(quantity, {
+                type: 'number',
+                name: 'items[${itemCount}].quantity',
+                value: "1"
+            });
+            quantity.setAttribute('name', `items[${itemCount}].quantity`);
+            quantityTd.append(quantity);
+            
+            row.append(productTd, unitPriceTd, discountTd, quantityTd)
+            frag.appendChild(row);
+            document.getElementById('items').appendChild(frag);
+            itemCount++;
+        }
+    </script>
+</body>
+</html>
