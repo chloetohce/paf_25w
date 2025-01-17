@@ -10,6 +10,7 @@ import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.listener.ChannelTopic;
 import org.springframework.data.redis.listener.RedisMessageListenerContainer;
+import org.springframework.data.redis.listener.adapter.MessageListenerAdapter;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 @Configuration
@@ -29,6 +30,7 @@ public class RedisConfig {
     @Value("${app.name}")
     private String name;
 
+    @Bean
     public RedisConnectionFactory createConnectionFactory() {
         final RedisStandaloneConfiguration config = new RedisStandaloneConfiguration(host, port);
         config.setDatabase(0);
@@ -46,8 +48,7 @@ public class RedisConfig {
     }
 
     @Bean("order")
-    public RedisTemplate<String, String> redisTemplate() {
-        RedisConnectionFactory redisConnectionFactory = createConnectionFactory();
+    public RedisTemplate<String, String> redisTemplate(RedisConnectionFactory redisConnectionFactory) {
         RedisTemplate<String, String> redisTemplate = new RedisTemplate<>();
         redisTemplate.setConnectionFactory(redisConnectionFactory);
         redisTemplate.setKeySerializer(new StringRedisSerializer());;
@@ -64,6 +65,11 @@ public class RedisConfig {
     }
 
     @Bean
-    public RedisMessageListenerContainer
+    public RedisMessageListenerContainer container(MessageListenerAdapter adapter, RedisConnectionFactory redisConnectionFactory, ChannelTopic topic) {
+        RedisMessageListenerContainer container = new RedisMessageListenerContainer();
+        container.setConnectionFactory(redisConnectionFactory);
+        container.addMessageListener(adapter, topic);
+        return container;
+    }
 
 }
