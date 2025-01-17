@@ -1,6 +1,7 @@
 package paf.workshop.paf_24w.model;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class Order {
     private int orderId;
@@ -15,13 +16,17 @@ public class Order {
 
     private double tax;
 
-    public Order(int id, LocalDate date, String customerName, String shipAddress, String text, double tax) {
-        this.orderId = id;
-        this.orderDate = date;
+    List<OrderDetails> items;
+
+    public Order(int orderId, LocalDate orderDate, String customerName, String shipAddress, String notes, double tax,
+            List<OrderDetails> items) {
+        this.orderId = orderId;
+        this.orderDate = orderDate;
         this.customerName = customerName;
         this.shipAddress = shipAddress;
-        this.notes = text;
+        this.notes = notes;
         this.tax = tax;
+        this.items = items;
     }
 
     public Order() {
@@ -73,6 +78,20 @@ public class Order {
 
     public void setTax(double tax) {
         this.tax = tax;
+    }
+
+    public List<OrderDetails> getItems() {
+        return items;
+    }
+
+    public void setItems(List<OrderDetails> items) {
+        this.items = items;
+    }
+
+    @Override
+    public String toString() {
+        return "Order [orderId=" + orderId + ", orderDate=" + orderDate + ", customerName=" + customerName
+                + ", shipAddress=" + shipAddress + ", notes=" + notes + ", tax=" + tax + ", items=" + items + "]";
     }
 
     

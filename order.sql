@@ -27,5 +27,5 @@ create table order_details (
     constraint fk_order_id foreign key (order_id) references orders(order_id)
 );
 
-grant all privileges on orderdn.* to 'chloe'@'%';
+grant all privileges on orderdb.* to 'chloe'@'%';
 flush privileges;
