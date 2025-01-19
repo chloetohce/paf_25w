@@ -13,6 +13,8 @@ import org.springframework.data.redis.listener.RedisMessageListenerContainer;
 import org.springframework.data.redis.listener.adapter.MessageListenerAdapter;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
+import paf.workshop.paf_24w.service.OrderService;
+
 @Configuration
 public class RedisConfig {
     @Value("${spring.data.redis.host}")
@@ -70,6 +72,13 @@ public class RedisConfig {
         container.setConnectionFactory(redisConnectionFactory);
         container.addMessageListener(adapter, topic);
         return container;
+    }
+
+    @Bean
+    public MessageListenerAdapter listenerAdapter(OrderService service) {
+        MessageListenerAdapter adapter = new MessageListenerAdapter(service);
+        adapter.setSerializer(new StringRedisSerializer());
+        return adapter;
     }
 
 }

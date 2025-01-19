@@ -18,7 +18,9 @@
                 <tr>
                     <th>Name</th>
                     <td>
-                        <input type="text" name="customerName">
+                        <select name="customerName">    
+                            <option th:each="r : ${registrations}" th:value="${r}" th:text="${r}"></option>
+                        </select>
                     </td>
                 </tr>
                 <tr>

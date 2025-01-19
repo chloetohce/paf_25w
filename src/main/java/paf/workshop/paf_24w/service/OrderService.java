@@ -1,8 +1,10 @@
 package paf.workshop.paf_24w.service;
 
 import java.io.StringReader;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -34,20 +36,25 @@ public class OrderService implements MessageListener {
     @Qualifier("order")
     private RedisTemplate<String, String> template;
 
+    private static final Logger logger = Logger.getLogger("Consumer");
+
     @Transactional
     public boolean saveOrder(Order o) {
         int orderId = orderRepository.addOrder(o);
         detailsRepository.saveOrderDetails(o.getItems(), orderId);
+        logger.info("Order from %s saved successfully.".formatted(o.getCustomerName()));
         return true;
     }
 
     @Override
     public void onMessage(Message message, byte[] pattern) {
         String orderDate = new String(message.getBody());
+        logger.info("Received: %s".formatted(orderDate));
         JsonReader reader = Json.createReader(new StringReader(orderDate));
         JsonObject obj = reader.readObject();
         
         Order o = new Order();
+        o.setOrderDate(LocalDate.parse(obj.getString("order_date")));
         o.setCustomerName(obj.getString("customer_name"));
         o.setShipAddress(obj.getString("ship_address"));
         o.setNotes(obj.getString("notes"));
@@ -64,6 +71,8 @@ public class OrderService implements MessageListener {
             itemsList.add(details);
         }
         o.setItems(itemsList);
+
+        logger.info("Saving order: %s".formatted(o.toString()));
 
         saveOrder(o);
 

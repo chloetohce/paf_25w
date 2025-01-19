@@ -12,7 +12,7 @@ public class GlobalErrorHandler {
     
     @ExceptionHandler({DataAccessException.class, Exception.class})
     public ModelAndView errorPage(Exception e, HttpServletRequest request) {
-        System.out.println("Reached error handler");
+        e.printStackTrace();
         ModelAndView mav = new ModelAndView("error");
         mav.addObject("msg", e.getMessage());
         return mav;

@@ -1,10 +1,13 @@
-/Users/chloe/VTTP/paf/paf_25w/src/main/java/paf/workshop/paf_24w/Paf24wApplication.java
-/Users/chloe/VTTP/paf/paf_25w/src/main/java/paf/workshop/paf_24w/controller/GlobalErrorHandler.java
-/Users/chloe/VTTP/paf/paf_25w/src/main/java/paf/workshop/paf_24w/controller/OrderController.java
-/Users/chloe/VTTP/paf/paf_25w/src/main/java/paf/workshop/paf_24w/db/OrderDetailsRepository.java
-/Users/chloe/VTTP/paf/paf_25w/src/main/java/paf/workshop/paf_24w/db/OrderRepository.java
-/Users/chloe/VTTP/paf/paf_25w/src/main/java/paf/workshop/paf_24w/db/Query.java
-/Users/chloe/VTTP/paf/paf_25w/src/main/java/paf/workshop/paf_24w/model/Order.java
-/Users/chloe/VTTP/paf/paf_25w/src/main/java/paf/workshop/paf_24w/model/OrderDetails.java
-/Users/chloe/VTTP/paf/paf_25w/src/main/java/paf/workshop/paf_24w/model/OrderRowMapper.java
-/Users/chloe/VTTP/paf/paf_25w/src/main/java/paf/workshop/paf_24w/service/OrderService.java
+C:\Users\Chloe Toh\vttp\paf\paf_25w\src\main\java\paf\workshop\paf_24w\config\RedisConfig.java
+C:\Users\Chloe Toh\vttp\paf\paf_25w\src\main\java\paf\workshop\paf_24w\controller\GlobalErrorHandler.java
+C:\Users\Chloe Toh\vttp\paf\paf_25w\src\main\java\paf\workshop\paf_24w\controller\OrderController.java
+C:\Users\Chloe Toh\vttp\paf\paf_25w\src\main\java\paf\workshop\paf_24w\db\OrderDetailsRepository.java
+C:\Users\Chloe Toh\vttp\paf\paf_25w\src\main\java\paf\workshop\paf_24w\db\OrderRepository.java
+C:\Users\Chloe Toh\vttp\paf\paf_25w\src\main\java\paf\workshop\paf_24w\db\Query.java
+C:\Users\Chloe Toh\vttp\paf\paf_25w\src\main\java\paf\workshop\paf_24w\db\RegistrationRepository.java
+C:\Users\Chloe Toh\vttp\paf\paf_25w\src\main\java\paf\workshop\paf_24w\model\Order.java
+C:\Users\Chloe Toh\vttp\paf\paf_25w\src\main\java\paf\workshop\paf_24w\model\OrderDetails.java
+C:\Users\Chloe Toh\vttp\paf\paf_25w\src\main\java\paf\workshop\paf_24w\model\OrderRowMapper.java
+C:\Users\Chloe Toh\vttp\paf\paf_25w\src\main\java\paf\workshop\paf_24w\Paf24wApplication.java
+C:\Users\Chloe Toh\vttp\paf\paf_25w\src\main\java\paf\workshop\paf_24w\service\OrderService.java
+C:\Users\Chloe Toh\vttp\paf\paf_25w\src\main\java\paf\workshop\paf_24w\service\ProducerService.java
